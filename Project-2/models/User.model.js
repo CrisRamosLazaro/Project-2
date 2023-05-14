@@ -46,11 +46,11 @@ const userSchema = new Schema(
       required: false
     },
 
-    myEvents: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Event',
-      required: false
-    }]
+    // myEvents: [{
+    //   // type: mongoose.Schema.Types.ObjectId,
+    //   ref: 'Event',
+    //   required: false
+    // }]
   },
   {
     timestamps: true
