@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>Our events</h1>
+    <hr class="mb-3">
+
+    {{#each events}}
+    <div class="row mb-3">
+        {{name}}
+        {{date}}
+        {{eventImg}}
+        {{!-- <a href="/events/{{_id}}" class="btn btn-sm btn-info custom-button">View event details</a> --}}
+        <a href="#" class="btn btn-sm btn-info custom-button">View event details</a>
+
+    </div>
+    {{/each}}
+
+</div>

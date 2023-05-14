@@ -47,7 +47,7 @@ const userSchema = new Schema(
     },
 
     myEvents: [{
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Event',
       required: false
     }]

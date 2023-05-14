@@ -1,0 +1,15 @@
+<div class="container">
+    <h1>Cinephiles</h1>
+    <hr class="mb-3">
+
+    {{#each events}}
+    <div class="row mb-3">
+        {{avatar}}
+        {{name}}
+        {{!-- <a href="/members/{{_id}}" class="btn btn-sm btn-info custom-button">See profile</a> --}}
+        <a href="#" class="btn btn-sm btn-info custom-button">See profile</a>
+
+    </div>
+    {{/each}}
+
+</div>

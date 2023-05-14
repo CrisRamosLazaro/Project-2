@@ -46,12 +46,13 @@ const eventSchema = new Schema(
         },
 
         host: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            default: 'ADMIN'
         },
 
         reviews: [{
-            type: mongoose.Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: 'Review'
         }],
 
