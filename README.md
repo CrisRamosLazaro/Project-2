@@ -1,10 +1,10 @@
-We are going to create a [Streaming Availability Checker](https://rapidapi.com/guides/ten-api-projects#4-streaming-availability-checker). A non-logged user will we able to enter a name of a title and check which platforms provides this service.
+We are going to create a [Streaming Availability Checker](https://rapidapi.com/guides/ten-api-projects#4-streaming-availability-checker). A non-logged user will we able to enter a movie title and check which platforms stream it.
 
-We will also allow users to register, creating their own id and avatar. This will allow users to fav movies and sign to events to watch a desire title (with location, date and other details). 
+We will also allow users to register, creating their own id and avatar. This will allow users to mark movies as favorite and sign up to screening events (with location, date and other details). 
 
-We will also have the following roles: User and Admin. The user with the Admin role will be able to CRUD events. On the other hand, users will only be available to register to this events, as mentioned previously. 
+We will also have the following roles: User and Admin. The user with Admin role will be able to CRUD events and edit/remove users. On the other hand, users will only be available to sign up to events and leave reviews. 
 
-We will have the following models: User and event. 
+We will have the following models: User and Event (and Review in a bonus iteration). 
 
 PARTY! 
 
