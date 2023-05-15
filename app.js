@@ -20,7 +20,7 @@ const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
 
 const userRoutes = require("./routes/user.routes");
-app.use("/members", userRoutes);
+app.use("/users", userRoutes);
 
 const eventRoutes = require("./routes/event.routes");
 app.use("/events", eventRoutes);
@@ -28,8 +28,11 @@ app.use("/events", eventRoutes);
 const authRoutes = require('./routes/auth.routes')
 app.use('/', authRoutes)
 
-const movieRoutes = require('./routes/auth.routes')
-app.use('/', authRoutes)
+const movieRoutes = require('./routes/movie.routes')
+app.use('/', movieRoutes)
+
+const apiRoutes = require('./routes/api.routes')
+app.use('/', apiRoutes)
 
 require("./error-handling")(app);
 
