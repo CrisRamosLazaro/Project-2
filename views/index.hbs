@@ -6,13 +6,19 @@
                 <hr>
             </article>
 
-            <form method="GET" action="/movie-search">
+            <form method="GET" action="/movie-search-results">
 
-                <input type="text" name="title" required>
+                <input type="text" name="title" required id="movieTitleAutocomplete">
+                <ul>
+                    <li> <a href="/movie-search-results/hiuhe67t7e">Breaking Bad</a></li>
+                    <li> <a href="/movie-search-results/9875985fy"></a></li>
+                </ul>
                 <br><br>
 
-                <input type="submit" value="Search for an artist" class="home-button">
+                <input type="submit" value="Search for a movie or series" class="home-button">
             </form>
         </div>
     </div>
 </div>
+
+<script src="/js/autocomplete-movie-title.js"></script>

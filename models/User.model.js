@@ -24,7 +24,7 @@ const userSchema = new Schema(
 
     description: {
       type: String,
-      default: "I'm a mystery."
+      default: "Third extra form the right"
     },
 
     role: {

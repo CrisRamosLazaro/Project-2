@@ -26,10 +26,11 @@ const eventSchema = new Schema(
             },
         },
 
-        //integration with GoogleMaps api?
         location: {
-            type: String,
-            required: true,
+            type: {
+                type: String
+            },
+            coordinates: [Number]
         },
 
         description: {
@@ -60,7 +61,9 @@ const eventSchema = new Schema(
     {
         timestamps: true
     }
-);
+)
+
+eventSchema.index({ location: '2dsphere' })
 
 
 const Event = model("Event", eventSchema);
