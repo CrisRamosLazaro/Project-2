@@ -14,18 +14,14 @@ const eventSchema = new Schema(
             default: 'https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2021/05/21043812/Pop-Up-Screens-4.jpg'
         },
 
-        date: {
-            type: Date,
-            required: true,
-        },
 
-        time: {
+        date: {
             start: {
-                type: String,
+                type: Date,
                 required: true,
             },
             end: {
-                type: String,
+                type: Date,
                 required: true,
             },
         },
@@ -41,20 +37,24 @@ const eventSchema = new Schema(
         },
 
         tickets: {
-            type: Number,
-            default: 0,
+            total: Number,
+            available: Number
         },
 
         host: {
             type: Schema.Types.ObjectId,
             ref: 'User',
-            default: 'ADMIN'
         },
 
         reviews: [{
             type: Schema.Types.ObjectId,
             ref: 'Review'
         }],
+
+        participants: [{
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }]
 
     },
     {

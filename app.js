@@ -20,7 +20,7 @@ const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
 
 const userRoutes = require("./routes/user.routes");
-app.use("/members", userRoutes);
+app.use("/user", userRoutes);
 
 const eventRoutes = require("./routes/event.routes");
 app.use("/events", eventRoutes);

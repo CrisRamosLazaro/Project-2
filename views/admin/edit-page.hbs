@@ -1,0 +1,42 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <h1>Editar {{username}}</h1>
+            <hr>
+
+
+            {{!-- ENVIAMOS EL ID COMO PARAM AL ENDPOINT YA QUE ES NECESARIO PARA EDITARLO
+            enctype="multipart/form-data"--}}
+            <form action="/user/edit/{{_id}}" method="POST">
+                <div class="mb-3 mt-5">
+                    <label for="userName" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="userName" name="username" value="{{username}}">
+                </div>
+
+                <div class="mb-3 ">
+                    <label for="userEmail" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="userEmail" name="email" value="{{email}}">
+                </div>
+
+                {{!-- <div class="mb-3 ">
+                    <label for="userAvatar" class="form-label">avatar</label>
+                    <input type="file" class="form-control" id="userAvatar" name="avatar" value="{{avatar}}">
+                </div> --}}
+
+                <div class="mb-3">
+                    <label for="userDesc" class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="userDesc" name="description" value="{{description}}">
+                </div>
+
+
+                <button class="btn btn-dark">Guardar edición</button>
+            </form>
+
+        </div>
+    </div>
+
+
+
+</div>
