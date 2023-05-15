@@ -7,18 +7,7 @@ const reviewSchema = new Schema(
             ref: 'User'
         },
 
-        event: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Event'
-        },
-
-        //integration with GoogleMaps api?
-        location: {
-            type: String,
-            required: true,
-        },
-
-        description: {
+        comment: {
             type: String,
         },
 

@@ -6,7 +6,6 @@ const userSchema = new Schema(
       type: String,
       trim: true,
       required: true,
-      unique: true
     },
     email: {
       type: String,
@@ -34,23 +33,14 @@ const userSchema = new Schema(
       default: 'CINEPHILE'
     },
 
-    myGenres: {
-      type: [String],
+    myGenres: [{
+      type: String,
       enum: ['Action', 'Comedy', 'Drama', 'Fantasy', 'Horror', 'Mystery', 'Romance', 'Thriller', 'Western'],
-      required: true
-    },
+    }],
 
     favMovies: {
       type: [String],
-      enum: [],
-      required: false
     },
-
-    myEvents: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Event',
-      required: false
-    }]
   },
   {
     timestamps: true

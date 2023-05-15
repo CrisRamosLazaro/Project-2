@@ -15,7 +15,7 @@ API: [https://api.watchmode.com/docs/#api-reference](https://api.watchmode.com/d
 | :--- | :-------------------------------------------: | :---------------------------------------------: | :---: | ------------------: |
 | GET  |                       /                       |          Index Page with a search bar           |   ❌   |                   ❌ |
 | --   |                      --                       |                       --                        |  --   |                  -- |
-| GET  |                   /register                   |              New user form render               |   ❌   |                   ❌ |
+| GET  |                  `/register`                  |              New user form render               |   ❌   |                   ❌ |
 | POST |                   /register                   |              New user form handler              |   ❌   |                   ❌ |
 | GET  |                    /log-in                    |                User form render                 |   ❌   |                   ❌ |
 | POST |                    /log-in                    |                User form handler                |   ❌   |                   ❌ |
