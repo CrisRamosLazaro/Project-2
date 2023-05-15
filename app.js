@@ -28,6 +28,9 @@ app.use("/events", eventRoutes);
 const authRoutes = require('./routes/auth.routes')
 app.use('/', authRoutes)
 
+const movieRoutes = require('./routes/auth.routes')
+app.use('/', authRoutes)
+
 require("./error-handling")(app);
 
 module.exports = app;
