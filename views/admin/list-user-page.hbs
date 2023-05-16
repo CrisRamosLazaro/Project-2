@@ -6,12 +6,12 @@
 
     {{username}}
 
-    <a href="/user/details/{{_id}}" class="btn btn-sm btn-dark">ver detalles</a>
+    <a href="/users/details/{{_id}}" class="btn btn-sm btn-dark">ver detalles</a>
 
 
-    <a href="/user/edit/{{_id}}" class="btn btn-sm btn-info">editar</a>
+    <a href="/users/edit/{{_id}}" class="btn btn-sm btn-info">editar</a>
 
-    <form action="/user/delete/{{_id}}" method="POST" style="display: inline">
+    <form action="/users/delete/{{_id}}" method="POST" style="display: inline">
         <input type="submit" value="eliminar" class="btn btn-sm btn-danger">
     </form>
 
@@ -19,7 +19,5 @@
     <hr>
 
     {{/each}}
-
-    <hr>
     <a href="/" class="btn btn-dark">Volver a inicio</a>
 </div>
