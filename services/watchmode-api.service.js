@@ -12,8 +12,12 @@ class WatchmodeApiHandler {
         return this.axiosApp.get('/titles')
     }
 
+    getAutocompleteTitle(value) {
+        return this.axiosApp.get(`autocomplete-search/?apiKey=${process.env.API_KEY}&search_value=${value}&search_type=2`)
+    }
+
     getOneTitle(titleId) {
-        return this.axiosApp.get(`/title/${titleId}/details/?apiKey=${process.env.API_KEY}`)
+        return this.axiosApp.get(`/title/${titleId}/details/?apiKey=${process.env.API_KEY}&append_to_response=sources`)
     }
 
 }

@@ -6,12 +6,10 @@
                 <hr>
             </article>
 
-            <form method="GET" action="/movie-search-results">
+            <form method="POST" action="/movie-search-results/:value">
 
                 <input type="text" name="title" required id="movieTitleAutocomplete">
-                <ul>
-                    <li> <a href="/movie-search-results/hiuhe67t7e">Breaking Bad</a></li>
-                    <li> <a href="/movie-search-results/9875985fy"></a></li>
+                <ul id="suggestionResults">
                 </ul>
                 <br><br>
 
@@ -21,4 +19,5 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/js/autocomplete-movie-title.js"></script>

@@ -1,13 +1,21 @@
-
-//#movieTitleAutocomplete comes from the id specified in the movie search form (index.hbs)
 document.querySelector('#movieTitleAutocomplete').onkeyup = event => {
 
     const { value } = event.target
 
-    console.log('MANDAMOS A LA API', value, 'PARA TENER LAS OCPIONES DIPONIBLES')
+    document.querySelector('#suggestionResults').innerHTML = ''
 
-    // MOSTRAMOS AL USUARIO LAS OPCIONES
-    // CUANDO HAGA CLICK EN ALGUNA REDIRIGIMOS A SU ID ASI:
+    axios
+        .get(`/api/movies?title=${value}`)
+        .then(movies => printSuggestions(movies.data.results))
+        .catch(err => console.log(err))
+}
 
+function printSuggestions(movies) {
 
+    movies.forEach(elm => {
+
+        console.log('ESTA PELI ES ', elm.name, 'Y SU ID ES', elm.id)
+        document.querySelector('#suggestionResults').innerHTML +=
+            `<li><a href="/movie-search-results/${elm.id}">${elm.name}</a></li>`
+    })
 }
