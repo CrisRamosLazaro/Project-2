@@ -27,17 +27,6 @@ router.get("/movie-search-results/:titleId", (req, res, next) => {
         })
         .catch(err => next('---> API error OH NOOOOO', err))
 
-
-
-    // watchmodeApiHandler
-    //     .getOneTitle(titleId)
-    //     .then(response => {
-    //         console.log('holaaaaa WTF', response.data)
-    //         res.render('movies/movie-search-results', { movie: response.data })
-    //     })
-
-    //     .catch(err => next('---> API error OH NOOOOO', err))
-
 })
 
 

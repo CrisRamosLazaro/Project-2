@@ -7,47 +7,38 @@
             <hr>
             <form action="/events/create" method="POST">
                 <div class="row">
-                    <div class="col">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name">
-                        </div>
+                    <div class="col mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name">
                     </div>
-                    <div class="col">
-                        <div class="mb-3">
-                            <label for="date" class="form-label">When?</label>
-                            <input type="date" class="form-control" id="date" name="date">
-                        </div>
+
+                    <div class="col mb-3">
+
+                        <label for="date" class="form-label">When?</label>
+                        <input type="date" class="form-control" id="date" name="date">
+
                     </div>
-                </div>
 
-                <div class="mb-3">
-                    <label for="time.start" class="form-label">Start Time</label>
-                    <input type="time" class="form-control" id="time.start" name="time">
-                </div>
 
-                <div class="mb-3">
-                    <label for="time.end" class="form-label">End Time</label>
-                    <input type="time" class="form-control" id="time.end" name="time">
-                </div>
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Where?</label>
+                        <input type="text" class="form-control" id="location" name="location">
+                    </div>
 
-                <div class="mb-3">
-                    <label for="location" class="form-label">Where?</label>
-                    <input type="text" class="form-control" id="location" name="location">
-                </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea type="text" class="form-control" id="description" rows="3"
+                            name="description"></textarea>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea type="text" class="form-control" id="description" rows="3" name="description"></textarea>
-                </div>
+                    <div class="mb-3">
+                        <label for="eventImg" class="form-label">Add an image</label>
+                        <input type="text" class="form-control" id="eventImg" name="image">
+                    </div>
 
-                <div class="mb-3">
-                    <label for="eventImg" class="form-label">Add an image</label>
-                    <input type="text" class="form-control" id="eventImg" name="image">
-                </div>
-
-                <div class="d-grid mt-5">
-                    <button type="submit" class="btn btn-dark btn-lg">Create event</button>
+                    <div class="d-grid mt-5">
+                        <button type="submit" class="btn btn-dark btn-lg">Create event</button>
+                    </div>
                 </div>
             </form>
         </div>
