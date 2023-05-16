@@ -7,31 +7,24 @@
             <hr>
             <form action="/events/create" method="POST">
                 <div class="row">
-                    <div class="mb-3">
+                    <div class="col mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name">
                     </div>
-
-                    <div class="mb-3">
-                        <label for="start" class="form-label">When?</label>
-                        <input type="date" class="form-control" id="start" name="date">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="eventImage" class="form-label">Image</label>
+                            <input type="text" class="form-control" id="eventImage" name="eventImg">
+                        </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="end" class="form-label">When?</label>
-                        <input type="date" class="form-control" id="end" name="date">
+                        <label for="eventDate" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="eventDate" name="date">
                     </div>
-
-
                     <div class="mb-3">
                         <label for="location" class="form-label">Where?</label>
                         <input type="text" class="form-control" id="location" name="location">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        <textarea type="text" class="form-control" id="description" rows="3"
-                            name="description"></textarea>
                     </div>
 
                     <div class="mb-3">
@@ -42,7 +35,6 @@
                     <div class="d-grid mt-5">
                         <button type="submit" class="btn btn-dark btn-lg">Create event</button>
                     </div>
-                </div>
             </form>
         </div>
     </div>

@@ -1,38 +1,72 @@
 const router = require("express").Router()
-
 const User = require('../models/User.model')
+const { isLoggedIn, checkRoles } = require('../middlewares/route-guard')
 
-// const { isLoggedIn, checkRoles, checkOwnership } = require('../middlewares/route-guard')
+// User profile
+router.get('/profile', isLoggedIn, (req, res, next) => {
+    res.render('users/profile', { user: req.session.currentUser })
+})
 
-router.get("/", (req, res, next) => {
+// List of all users seen by the ADMIN
+router.get("/list", isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
-    // const userRole = {
-    //     isAdmin: req.session.currentUser?.role === 'ADMIN'
-    // }
-    // const currentUserId = req.session.currentUser?._id
+    const userRole = {
+        isAdmin: req.session.currentUser?.role === 'ADMIN',
+    }
 
     User
         .find()
         .select({ username: 1 })
         .sort({ username: 1 })
-        .then(users => {
-            // users.forEach(user => {
-            //     const pageUserId = user._id
-            //     if (currentUserId == pageUserId) {
-            //         user.isOwner = true
-            //     } else {
-            //         user.isOwner = false
-            //     }
-            //     if (user.isOwner || userRole.isPM) {
-            //         user.canEdit = true
-            //     } else {
-            //         user.canEdit = false
-            //     }
-            // })
-            res.render("users/member-list", { users })
-            // res.render("users/member-list", { users, userRole, currentUserId })
-        })
-        .catch(err => console.log('---> user error', err))
+        .then(users => res.render("admin/list-user-page", { users, userRole }))
+        .catch(err => next(err))
+})
+
+// Information of specific user
+router.get('/details/:_id', (req, res, next) => {
+
+    const { _id } = req.params
+
+    User
+        .findById(_id)
+        .then(user => res.render('users/details', user))
+        .catch(err => next(err))
+})
+
+// edit user form (render) - PROTECTED
+router.get('/edit/:_id', (req, res, next) => {
+
+    const { _id } = req.params
+
+    User
+        .findById(_id)
+        .then(user => res.render('admin/edit-page', user))
+        .catch(err => next(err))
+})
+
+// edit user form (handler) - PROTECTED
+router.post('/edit/:_id', (req, res, next) => {
+
+    const { username, email, avatar, description } = req.body
+    const { _id } = req.params
+
+
+    User
+        .findByIdAndUpdate(_id, { username, email, avatar, description })
+        // .then(user => res.send(user))
+        .then(() => res.redirect(`/user/details/${_id}`))
+        .catch(err => next(err))
+})
+
+// delete book (de tipo POST!!!!) - PROTECTED
+router.post('/delete/:_id', (req, res, next) => {
+
+    const { _id } = req.params
+
+    User
+        .findByIdAndDelete(_id)
+        .then(() => res.redirect(`/user/list`))
+        .catch(err => next(err))
 })
 
 module.exports = router
