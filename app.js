@@ -17,6 +17,7 @@ app.locals.appTitle = `${capitalize(projectName)} created by Cris and Ignacio`;
 
 app.use((req, res, next) => {
     app.locals.loggedUser = req.session.currentUser
+    app.locals.loggedAdmin = req.session.currentUser?.role === 'ADMIN'
     next()
 })
 

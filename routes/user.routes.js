@@ -54,7 +54,7 @@ router.post('/edit/:_id', (req, res, next) => {
     User
         .findByIdAndUpdate(_id, { username, email, avatar, description })
         // .then(user => res.send(user))
-        .then(() => res.redirect(`/user/details/${_id}`))
+        .then(() => res.redirect(`/users/details/${_id}`))
         .catch(err => next(err))
 })
 
@@ -65,7 +65,7 @@ router.post('/delete/:_id', (req, res, next) => {
 
     User
         .findByIdAndDelete(_id)
-        .then(() => res.redirect(`/user/list`))
+        .then(() => res.redirect(`/users/list`))
         .catch(err => next(err))
 })
 

@@ -9,7 +9,7 @@
 
             {{!-- ENVIAMOS EL ID COMO PARAM AL ENDPOINT YA QUE ES NECESARIO PARA EDITARLO
             enctype="multipart/form-data"--}}
-            <form action="/user/edit/{{_id}}" method="POST">
+            <form action="/users/edit/{{_id}}" method="POST">
                 <div class="mb-3 mt-5">
                     <label for="userName" class="form-label">Username</label>
                     <input type="text" class="form-control" id="userName" name="username" value="{{username}}">
