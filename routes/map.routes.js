@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
+const axios = require('axios');
 
-app.get('/autocomplete', async (req, res) => {
+
+router.get('/autocomplete', async (req, res) => {
     const search = req.query.search;
     const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${search}&key=${process.env.GOOGLE_API_KEY}`;
 
