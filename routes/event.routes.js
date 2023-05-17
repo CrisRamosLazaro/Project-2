@@ -2,28 +2,26 @@ const express = require('express')
 const router = express.Router()
 const Event = require('../models/Event.model')
 
-// event list
 router.get("/list", (req, res, next) => {
 
     Event
         .find()
         .select({ name: 1 })
         .sort({ name: 1 })
-        .then(events => res.render('events/event-list', { events }))
+        .then(events => res.render({ events }, 'events/event-list'))
         .catch(err => console.log(err))
 })
-// new event form (render)
 router.get('/create', (req, res, next) => {
-    res.render('events/event-page')
+    res.render('events/event-creator')
 })
 
 router.post("/create", (req, res, next) => {
 
-    const { name, eventImage, date, description } = req.body
+    const { name, eventImg, startDate, endDate, location, description, tickets } = req.body
 
     Event
-        .create({ name, eventImage, date, description })
-        .then(newEvent => res.redirect(`/event/list`, newEvent))
+        .create({ name, eventImg, startDate, endDate, location, description, tickets })
+        .then(newEvent => res.redirect(newEvent, 'events/event-list'))
         .catch(err => console.log(err))
 })
 module.exports = router

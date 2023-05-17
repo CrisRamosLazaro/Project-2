@@ -14,23 +14,40 @@ const eventSchema = new Schema(
             default: 'https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2021/05/21043812/Pop-Up-Screens-4.jpg'
         },
 
+        // date: {
+        //     start: {
+        //         type: Date,
+        //         required: true,
+        //     },
+        //     end: {
+        //         type: Date,
+        //         required: true,
+        //     },
+        // },
 
-        date: {
-            start: {
-                type: Date,
-                required: true,
-            },
-            end: {
-                type: Date,
-                required: true,
-            },
+        startDate: {
+
+            type: Date,
+            required: true,
+        },
+
+        endDate: {
+
+            type: Date,
+            required: true,
+
         },
 
         location: {
             type: {
-                type: String
+                type: String,
+                default: 'Point',
+                enum: ['Point']
             },
-            coordinates: [Number]
+            coordinates: {
+                type: [Number],
+                required: true,
+            },
         },
 
         description: {
@@ -64,7 +81,6 @@ const eventSchema = new Schema(
 )
 
 eventSchema.index({ location: '2dsphere' })
-
 
 const Event = model("Event", eventSchema);
 

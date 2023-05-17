@@ -39,6 +39,9 @@ app.use('/', movieRoutes)
 const apiRoutes = require('./routes/api.routes')
 app.use('/', apiRoutes)
 
+const mapRoutes = require('./routes/map.routes')
+app.use('/', mapRoutes)
+
 require("./error-handling")(app);
 
 module.exports = app;
