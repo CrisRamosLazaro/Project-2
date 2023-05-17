@@ -21,12 +21,13 @@ router.get('/create', (req, res, next) => {
 
 router.post("/create", (req, res, next) => {
 
-    const { name, eventImg, startDate, endDate, location, description, tickets } = req.body
+    const { name, eventImg, date, timeStart: start, timeEnd: end, description, tickets } = req.body
+    // console.log(location, lat, lng)
 
     Event
-        .create({ name, eventImg, startDate, endDate, location, description, tickets })
-        .then(newEvent => res.redirect(newEvent, 'events/event-list'))
-        .catch(err => next(err))
+        .create({ name, eventImg, date, time: { start, end }, description, tickets })
+        .then(() => res.redirect('/events/list'))
+        .catch(err => console.log(err))
 })
 
 

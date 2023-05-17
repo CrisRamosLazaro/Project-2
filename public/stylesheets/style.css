@@ -10,6 +10,15 @@ h1 {
   color: 15px;
 }
 
+.movie-plot {
+  text-align: justify;
+  font-size: 1.2em;
+}
+
+.movie-plot-box {
+  align-items: center;
+}
+
 #error {
   background-color: rgb(255, 188, 188);
   padding: 10px;
