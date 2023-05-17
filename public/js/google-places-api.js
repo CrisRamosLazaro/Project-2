@@ -22,11 +22,21 @@ function initAutocomplete() {
             return;
         }
 
-        const lat = place.geometry.location.lat()
-        const lng = place.geometry.location.lng()
+        // const lat = place.geometry.location.lat.toJSON()
+        // const lng = place.geometry.location.lng()
+        // const lat2 = place.geometry.location
+
+        const coords = place.geometry.location
+
+        const lat = Number
+        const lng = Number
+
 
         document.getElementById('lat').value = lat;
         document.getElementById('lng').value = lng;
 
+        console.log('cons-LOGGING2', typeof coords, coords)
+
     })
+    console.log('console-LOGGING', typeof coords, coords)
 }

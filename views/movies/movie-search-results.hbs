@@ -2,8 +2,23 @@
 
     <h1 class="mb-3">Platforms streaming {{title}}</h1>
     <hr>
-    <img src="{{poster}}" alt="Program Image">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img src="{{poster}}" alt="Program Image">
+        </div>
+        <div class="col-md-8 d-flex movie-plot-box">
+            <div class="col-md-6">
+                <p class="movie-plot">{{plot_overview}}</p>
+                <p>{{type}}, {{runtime_minutes}} min</p>
+                <p>{{#each genre_names}} {{this}} |{{/each}}</p>
+
+            </div>
+        </div>
+    </div>
     <hr>
+
+
+
     <div class="row">
 
         {{#each sources}}

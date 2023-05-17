@@ -16,24 +16,31 @@
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="startDate" class="form-label">Start Date</label>
-                                <input type="date" class="form-control" id="startDate" name="startDate">
+                                <label for="date" class="form-label">When?</label>
+                                <input type="date" class="form-control" id="date" name="date">
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="startTime" class="form-label">Start Time</label>
+                                <input type="time" class="form-control" id="startTime" name="timeStart">
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
-                                <label for="endDate" class="form-label">End Date</label>
-                                <input type="date" class="form-control" id="endDate" name="endDate">
+                                <label for="endTime" class="form-label">End Time</label>
+                                <input type="time" class="form-control" id="endTime" name="timeEnd">
                             </div>
                         </div>
                     </div>
-
+                    {{!--
                     <div class="mb-3">
                         <label for="location" class="form-label">Where?</label>
                         <input type="text" id="search" class="form-control" name="location">
-                        <input type="hidden" id="lat" name="location[coordinates][1]">
-                        <input type="hidden" id="lng" name="location[coordinates][0]">
-                    </div>
+                        <input type="hidden" id="lat" name="lat">
+                        <input type="hidden" id="lng" name="lng">
+                    </div> --}}
 
                     <div class="mb-3">
                         <label for="eventImg" class="form-label">Add an image</label>

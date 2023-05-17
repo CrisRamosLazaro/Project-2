@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const watchmodeApiHandler = require('../services/watchmode-api.service')
 
-router.post("/movie-search-results/:value", (req, res, next) => {
+router.post("/movie-search-results/:titleId", (req, res, next) => {
     const { value } = req.params
     console.log(value)
 
