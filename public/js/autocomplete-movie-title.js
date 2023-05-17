@@ -12,10 +12,11 @@ document.querySelector('#movieTitleAutocomplete').onkeyup = event => {
 
 function printSuggestions(movies) {
 
-    movies.forEach(elm => {
+    let code = ``
 
-        console.log('ESTA PELI ES ', elm.name, 'Y SU ID ES', elm.id)
-        document.querySelector('#suggestionResults').innerHTML +=
-            `<li><a href="/movie-search-results/${elm.id}">${elm.name}</a></li>`
+    movies.forEach(elm => {
+        code += `<li><a href="/movie-search-results/${elm.id}">${elm.name}</a></li>`
     })
+
+    document.querySelector('#suggestionResults').innerHTML += code
 }

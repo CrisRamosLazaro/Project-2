@@ -39,7 +39,10 @@ const userSchema = new Schema(
     }],
 
     favMovies: {
-      type: [String],
+      type: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Movie'
+      }],
     },
   },
   {

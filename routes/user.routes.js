@@ -2,6 +2,7 @@ const router = require("express").Router()
 const User = require('../models/User.model')
 const { isLoggedIn, checkRoles } = require('../middlewares/route-guard')
 const uploaderMiddleware = require('../middlewares/uploader.middleware')
+const { getUserRole } = require("../utils/role-handling")
 
 // User profile
 router.get('/profile', isLoggedIn, (req, res, next) => {
@@ -11,9 +12,8 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
 // List of all users seen by the ADMIN
 router.get("/list", isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
-    const userRole = {
-        isAdmin: req.session.currentUser?.role === 'ADMIN',
-    }
+    const userRole = getUserRole(req.session.currentUser)
+
 
     User
         .find()
@@ -66,6 +66,13 @@ router.post('/edit/:_id', uploaderMiddleware.single('avatar'), (req, res, next) 
             .then(() => res.redirect(`/users/details/${_id}`))
             .catch(err => next(err))
     }
+
+
+    // User
+    //     .findByIdAndUpdate(_id, { username, email, description, avatar: req.file?.path })
+    //     // .then(user => res.send(user))
+    //     .then(() => res.redirect(`/users/details/${_id}`))
+    //     .catch(err => next(err))
 })
 
 

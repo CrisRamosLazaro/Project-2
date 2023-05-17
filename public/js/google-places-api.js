@@ -16,7 +16,9 @@ function initAutocomplete() {
     const autocomplete = new google.maps.places.Autocomplete(input)
 
     autocomplete.addListener('place_changed', () => {
-        const place = autocomplete.getPlace();
+
+        const place = autocomplete.getPlace()
+
         if (!place.geometry) {
             console.log("No details available for input: '" + place.name + "'");
             return;
@@ -27,6 +29,5 @@ function initAutocomplete() {
 
         document.getElementById('lat').value = lat;
         document.getElementById('lng').value = lng;
-
     })
 }

@@ -8,12 +8,16 @@ router.get("/list", (req, res, next) => {
         .find()
         .select({ name: 1 })
         .sort({ name: 1 })
-        .then(events => res.render({ events }, 'events/event-list'))
-        .catch(err => console.log(err))
+        .then(events => res.render('events/event-list', events))
+        .catch(err => next(err))
 })
+
+
 router.get('/create', (req, res, next) => {
+
     res.render('events/event-creator')
 })
+
 
 router.post("/create", (req, res, next) => {
 
@@ -22,6 +26,8 @@ router.post("/create", (req, res, next) => {
     Event
         .create({ name, eventImg, startDate, endDate, location, description, tickets })
         .then(newEvent => res.redirect(newEvent, 'events/event-list'))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
+
+
 module.exports = router

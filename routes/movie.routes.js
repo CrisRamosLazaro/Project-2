@@ -1,22 +1,33 @@
 const express = require('express');
 const router = express.Router();
-const watchmodeApiHandler = require('../services/watchmode-api.service')
+const watchmodeApiHandler = require('../services/watchmode-api.service');
+const User = require('../models/User.model');
 
-router.post("/movie-search-results/:value", (req, res, next) => {
+
+router.post("/:titleId", (req, res, next) => {
+
     const { value } = req.params
-    console.log(value)
 
     watchmodeApiHandler
         .getAutocompleteTitle(value)
         .then(response => {
-            console.log(response.data)
             res.render('movies/movie-search-results', { movie: response.data })
         })
-        .catch(err => next('---> API error OH NOOOOO', err))
+        .catch(err => next(err))
 })
 
+router.post("/:titleId/like", (req, res, next) => {
+    const { titleId } = req.params
+    const { _id } = req.session.currentUser
 
-router.get("/movie-search-results/:titleId", (req, res, next) => {
+    User
+        .findByIdAndUpdate(_id, { $addToSet: { favMovies: titleId } })
+        .then(() => res.redirect(`/users/profile`))
+        .catch(err => next(err))
+
+})
+
+router.get("/:titleId", (req, res, next) => {
 
     const { titleId } = req.params
 
@@ -25,7 +36,7 @@ router.get("/movie-search-results/:titleId", (req, res, next) => {
         .then(response => {
             res.render('movies/movie-search-results', response.data)
         })
-        .catch(err => next('---> API error OH NOOOOO', err))
+        .catch(err => next(err))
 
 })
 
