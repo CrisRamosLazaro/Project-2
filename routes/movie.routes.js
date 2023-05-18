@@ -21,8 +21,11 @@ router.post("/:titleId/like", (req, res, next) => {
     const { _id } = req.session.currentUser
 
     User
-        .findByIdAndUpdate(_id, { $addToSet: { favMovies: titleId } })
-        .then(() => res.redirect(`/users/profile`))
+        .findByIdAndUpdate(_id, { $addToSet: { favMovies: titleId } }, { new: true })
+        .then(updatedUser => {
+            req.session.currentUser = updatedUser
+        })
+        .then(() => res.redirect('/users/profile'))
         .catch(err => next(err))
 
 })

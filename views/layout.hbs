@@ -30,14 +30,9 @@
                      aria-expanded="false">Events</a>
                   <ul class="dropdown-menu">
                      <li><a class="dropdown-item" href="/events/list">Event List</a></li>
+                     {{#if loggedAdmin}}
                      <li><a class="dropdown-item" href="/events/create">Create Events</a></li>
-                  </ul>
-               </li>
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                     aria-expanded="false">Movies</a>
-                  <ul class="dropdown-menu">
-                     <li><a class="dropdown-item" href="#">Movie List</a></li>
+                     {{/if}}
                   </ul>
                </li>
                {{#if loggedUser}}

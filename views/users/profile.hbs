@@ -3,7 +3,13 @@
     <hr>
     <p>Tu email es {{user.email}}</p>
     <img id="profileImage" src="{{user.avatar}}" alt="Avatar Image">
-    <p>Tus peliculas favoritas son </p>
+    <p>Tus peliculas favoritas son:</p>
+    {{#each favMovies}}
+    <p> - {{title}}</p>
+    {{/each}}
+
+
+
 
     <hr>
     <a href="/users/edit/{{user._id}}" class="btn btn-sm btn-info">editar</a>

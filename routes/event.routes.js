@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const Event = require('../models/Event.model')
+const { isLoggedIn, checkRoles } = require('../middlewares/route-guard')
 
-router.get("/list", (req, res, next) => {
+router.get("/list", isLoggedIn, (req, res, next) => {
 
     Event
         .find()
@@ -13,13 +14,13 @@ router.get("/list", (req, res, next) => {
 })
 
 
-router.get('/create', (req, res, next) => {
+router.get('/create', isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
     res.render('events/event-creator')
 })
 
 
-router.post("/create", (req, res, next) => {
+router.post("/create", isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
     const { name, eventImg, date, timeStart: start, timeEnd: end, description, tickets } = req.body
     // console.log(location, lat, lng)

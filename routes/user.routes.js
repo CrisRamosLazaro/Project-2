@@ -1,13 +1,28 @@
 const router = require("express").Router()
 const User = require('../models/User.model')
-const { isLoggedIn, checkRoles } = require('../middlewares/route-guard')
+const { isLoggedIn, checkRoles, checkUser } = require('../middlewares/route-guard')
 const uploaderMiddleware = require('../middlewares/uploader.middleware')
 const { getUserRole } = require("../utils/role-handling")
+const { response } = require("express")
+const watchmodeApiHandler = require("../services/watchmode-api.service")
 
 // User profile
 router.get('/profile', isLoggedIn, (req, res, next) => {
-    res.render('users/profile', { user: req.session.currentUser })
+
+    const userFavi = req.session.currentUser.favMovies
+
+    const moviesPromises = userFavi.map(idMovies => watchmodeApiHandler.getOneTitle(idMovies))
+
+    Promise
+        .all(moviesPromises)
+        .then(movies => {
+            const favMovies = movies.map(elm => elm.data)
+            res.render('users/profile', { user: req.session.currentUser, favMovies })
+        })
+        .catch(err => next(err))
 })
+
+
 
 // List of all users seen by the ADMIN
 router.get("/list", isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
@@ -24,7 +39,7 @@ router.get("/list", isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 })
 
 // Information of specific user
-router.get('/details/:_id', (req, res, next) => {
+router.get('/details/:_id', checkRoles('ADMIN'), (req, res, next) => {
 
     const { _id } = req.params
 
@@ -34,8 +49,8 @@ router.get('/details/:_id', (req, res, next) => {
         .catch(err => next(err))
 })
 
-// edit user form (render) - PROTECTED
-router.get('/edit/:_id', (req, res, next) => {
+// edit user form (render) 
+router.get('/edit/:_id', checkUser, (req, res, next) => {
 
     const { _id } = req.params
 
@@ -45,42 +60,21 @@ router.get('/edit/:_id', (req, res, next) => {
         .catch(err => next(err))
 })
 
-// edit user form (handler) - PROTECTED
-router.post('/edit/:_id', uploaderMiddleware.single('avatar'), (req, res, next) => {
+// edit user form (handler) 
+router.post('/edit/:_id', checkUser, uploaderMiddleware.single('avatar'), (req, res, next) => {
 
 
     const { username, email, description } = req.body
     const { _id } = req.params
 
-    if (req.file) {
-        const { path: avatar } = req.file
-        User
-            .findByIdAndUpdate(_id, { username, email, description, avatar })
-            // .then(user => res.send(user))
-            .then(() => res.redirect(`/users/details/${_id}`))
-            .catch(err => next(err))
-    } else {
-        User
-            .findByIdAndUpdate(_id, { username, email, description })
-            // .then(user => res.send(user))
-            .then(() => res.redirect(`/users/details/${_id}`))
-            .catch(err => next(err))
-    }
-
-
-    // User
-    //     .findByIdAndUpdate(_id, { username, email, description, avatar: req.file?.path })
-    //     // .then(user => res.send(user))
-    //     .then(() => res.redirect(`/users/details/${_id}`))
-    //     .catch(err => next(err))
+    User
+        .findByIdAndUpdate(_id, { username, email, description, avatar: req.file?.path })
+        .then(() => res.redirect(`/users/details/${_id}`))
+        .catch(err => next(err))
 })
 
-
-
-
-
-// delete book (de tipo POST!!!!) - PROTECTED
-router.post('/delete/:_id', (req, res, next) => {
+// delete user - 
+router.post('/delete/:_id', checkRoles('ADMIN'), (req, res, next) => {
 
     const { _id } = req.params
 
