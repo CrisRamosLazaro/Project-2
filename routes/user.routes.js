@@ -29,7 +29,6 @@ router.get("/list", isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
     const userRole = getUserRole(req.session.currentUser)
 
-
     User
         .find()
         .select({ username: 1 })
@@ -45,7 +44,10 @@ router.get('/details/:_id', checkRoles('ADMIN'), (req, res, next) => {
 
     User
         .findById(_id)
-        .then(user => res.render('users/details', user))
+        .populate('myEvents')
+        .then(user => {
+            res.render(`users/profile`, { user })
+        })
         .catch(err => next(err))
 })
 

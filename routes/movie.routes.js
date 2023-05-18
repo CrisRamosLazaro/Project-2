@@ -28,6 +28,27 @@ router.post("/:titleId/like", (req, res, next) => {
         .then(() => res.redirect('/users/profile'))
         .catch(err => next(err))
 
+    watchmodeApiHandler
+        .getOneTitle(titleId)
+        .then(response => {
+            movie = { apiId: titleId, title: response.data.title }
+            return movie
+        })
+        .then(() => {
+            User
+                .findByIdAndUpdate(userId, { $push: { favMovies: movie } }, { new: true })
+                .then(user => {
+                    req.session.currentUser = user
+                    req.session.save(err => {
+                        if (err) {
+                            next(err);
+                        } else {
+                            res.redirect(`/users/profile/${userId}`)
+                        }
+                    })
+                })
+                .catch(err => next(err))
+        })
 })
 
 router.get("/:titleId", (req, res, next) => {

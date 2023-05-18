@@ -1,4 +1,5 @@
 <div class="container">
+
     <h1>Bienvenid@, {{user.username}}</h1>
     <hr>
     <p>Tu email es {{user.email}}</p>
@@ -11,6 +12,26 @@
 
 
 
-    <hr>
-    <a href="/users/edit/{{user._id}}" class="btn btn-sm btn-info">editar</a>
+    <p>Tu email es {{user.email}}</p>
+    <p>Tus peliculas favoritas son: </p>
+    <ul>
+        <li>test</li>
+        {{#each user.favMovies}}
+        <li>Name: {{this.name}}</li>
+        {{/each}}
+    </ul>
+    <p>Events I attended:</p>
+
+    <ul>
+        {{#each user.myEvents}}
+        <li>Name: {{this.name}}, Date: {{this.date}} | {{this.time}}, Description: {{this.description}}</li>
+        {{/each}}
+    </ul>
+
+</div>
+</div>
+
+</div>
+<hr>
+<a href="/users/edit/{{user._id}}" class="btn btn-sm btn-info">editar</a>
 </div>

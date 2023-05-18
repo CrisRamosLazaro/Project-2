@@ -10,6 +10,30 @@ h1 {
   color: 15px;
 }
 
+.custom-button {
+  width: auto;
+}
+
+.avatar-box {
+  max-width: 300px;
+  height: auto;
+}
+
+.avatar {
+  max-width: 50%;
+  height: auto;
+}
+
+.event-box {
+  max-width: 300px;
+  height: auto;
+}
+
+.event-pic {
+  max-width: 100%;
+  height: auto;
+}
+
 .movie-plot {
   text-align: justify;
   font-size: 1.2em;
