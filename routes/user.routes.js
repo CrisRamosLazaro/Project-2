@@ -1,5 +1,6 @@
 const router = require("express").Router()
 const User = require('../models/User.model')
+const Event = require('../models/Event.model')
 const { isLoggedIn, checkRoles } = require('../middlewares/route-guard')
 const uploaderMiddleware = require('../middlewares/uploader.middleware')
 const { getUserRole } = require("../utils/role-handling")
@@ -14,7 +15,6 @@ router.get("/list", isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
     const userRole = getUserRole(req.session.currentUser)
 
-
     User
         .find()
         .select({ username: 1 })
@@ -24,15 +24,19 @@ router.get("/list", isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 })
 
 // Information of specific user
-router.get('/details/:_id', (req, res, next) => {
+router.get('/profile/:_id', (req, res, next) => {
 
     const { _id } = req.params
 
     User
         .findById(_id)
-        .then(user => res.render('users/details', user))
+        .populate('myEvents')
+        .then(user => {
+            res.render(`users/profile`, { user })
+        })
         .catch(err => next(err))
 })
+
 
 // edit user form (render) - PROTECTED
 router.get('/edit/:_id', (req, res, next) => {
@@ -57,13 +61,13 @@ router.post('/edit/:_id', uploaderMiddleware.single('avatar'), (req, res, next) 
         User
             .findByIdAndUpdate(_id, { username, email, description, avatar })
             // .then(user => res.send(user))
-            .then(() => res.redirect(`/users/details/${_id}`))
+            .then(() => res.redirect(`/users/profile/${_id}`))
             .catch(err => next(err))
     } else {
         User
             .findByIdAndUpdate(_id, { username, email, description })
             // .then(user => res.send(user))
-            .then(() => res.redirect(`/users/details/${_id}`))
+            .then(() => res.redirect(`/users/profile/${_id}`))
             .catch(err => next(err))
     }
 
@@ -74,9 +78,6 @@ router.post('/edit/:_id', uploaderMiddleware.single('avatar'), (req, res, next) 
     //     .then(() => res.redirect(`/users/details/${_id}`))
     //     .catch(err => next(err))
 })
-
-
-
 
 
 // delete book (de tipo POST!!!!) - PROTECTED

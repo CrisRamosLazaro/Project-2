@@ -38,12 +38,14 @@ const userSchema = new Schema(
       enum: ['Action', 'Comedy', 'Drama', 'Fantasy', 'Horror', 'Mystery', 'Romance', 'Thriller', 'Western'],
     }],
 
-    favMovies: {
-      type: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Movie'
-      }],
-    },
+    favMovies: [{
+      type: String
+    }],
+
+    myEvents: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Event'
+    }],
   },
   {
     timestamps: true

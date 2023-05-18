@@ -2,15 +2,29 @@
     <h1>Our events</h1>
     <hr class="mb-3">
 
-    {{#each events}}
     <div class="row mb-3">
-        {{name}}
-        {{date}}
-        {{eventImg}}
-        {{!-- <a href="/events/{{_id}}" class="btn btn-sm btn-info custom-button">View event details</a> --}}
-        <a href="#" class="btn btn-sm btn-info custom-button">View event details</a>
+        {{#each dateFormatEvents}}
 
+        <div class="col-lg-4 text-center event-box">
+            <img class="event-pic" src="{{eventImg}}" class="avatar" alt="{{name}}">
+        </div>
+
+        <div class="col-lg-8 d-flex">
+            <div class="col-md-6">
+                <p> {{name}}</p>
+                <p> where: {{description}}</p>
+                <p>when:? {{date}}</p>
+                <form action="/events/{{id}}/join" method="POST" style="display: inline">
+                    <input type="submit" value="join" class="btn btn-sm btn-danger">
+                </form>
+                <a href="#" class="btn btn-sm btn-info custom-button">View event details</a>
+            </div>
+        </div>
+
+        {{!-- <a href="/events/{{_id}}" class="btn btn-sm btn-info custom-button">View event details</a> --}}
+
+        <hr class="mt-3 mb-3">
+        {{/each}}
     </div>
-    {{/each}}
 
 </div>

@@ -37,14 +37,8 @@ const eventSchema = new Schema(
                 enum: ['Point']
             },
             coordinates: {
-                lat: {
-                    type: Number,
-                    required: true,
-                },
-                lng: {
-                    type: Number,
-                    required: true,
-                },
+                type: [Number],
+                required: true,
             },
         },
 
