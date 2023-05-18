@@ -12,14 +12,24 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
     const userFavi = req.session.currentUser.favMovies
 
     const moviesPromises = userFavi.map(idMovies => watchmodeApiHandler.getOneTitle(idMovies))
+    const userPromise = User
+        .findById(req.session.currentUser._id)
+        .populate('myEvents')
 
     Promise
-        .all(moviesPromises)
-        .then(movies => {
+        .all([...moviesPromises, userPromise])
+        .then(values => {
+            const movies = values.slice(0, -1)
+            const userWithEvents = values[values.length - 1]
+
+
+
             const favMovies = movies.map(elm => elm.data)
-            res.render('users/profile', { user: req.session.currentUser, favMovies })
+            res.render('users/profile', { user: userWithEvents, favMovies })
         })
         .catch(err => next(err))
+
+
 })
 
 

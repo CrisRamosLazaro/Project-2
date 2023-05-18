@@ -24,6 +24,22 @@ h1 {
   height: auto;
 }
 
+.movie-list-user {
+  display: flex;
+  justify-content: space-around;
+}
+
+.poster-userlist {
+  width: 120px;
+  height: 177.78px;
+  object-fit: cover;
+}
+
+.movie-title {
+  font-size: 0.8em;
+  text-align: center;
+}
+
 .event-box {
   max-width: 300px;
   height: auto;

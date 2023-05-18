@@ -3,6 +3,7 @@ const router = express.Router()
 const Event = require('../models/Event.model')
 const User = require('../models/User.model')
 const { formatDate } = require('../utils/date-utils')
+const { isLoggedIn, checkRoles, isLoggedOut } = require('../middlewares/route-guard')
 
 router.get('/create', isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
@@ -25,7 +26,7 @@ router.post("/create", (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get("/list", (req, res, next) => {
+router.get("/list", isLoggedIn, (req, res, next) => {
     Event
         .find()
         .sort({ name: 1 })
@@ -43,7 +44,7 @@ router.get("/list", (req, res, next) => {
         .catch(err => next(err));
 });
 
-router.post("/:eventId/join", (req, res, next) => {
+router.post("/:eventId/join", isLoggedIn, (req, res, next) => {
     const { eventId } = req.params
     const { _id: userId } = req.session.currentUser
 
@@ -53,7 +54,7 @@ router.post("/:eventId/join", (req, res, next) => {
             return Event
                 .findByIdAndUpdate(eventId, { $addToSet: { participants: userId } })
         })
-        .then(() => res.redirect(`/users/profile/${userId}`))
+        .then(() => res.redirect(`/users/profile`))
         .catch(err => next(err))
 })
 

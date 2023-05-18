@@ -18,10 +18,10 @@ router.post("/:titleId", (req, res, next) => {
 
 router.post("/:titleId/like", (req, res, next) => {
     const { titleId } = req.params
-    const { _id } = req.session.currentUser
+    const { _id: userId } = req.session.currentUser
 
     User
-        .findByIdAndUpdate(_id, { $addToSet: { favMovies: titleId } }, { new: true })
+        .findByIdAndUpdate(userId, { $addToSet: { favMovies: titleId } }, { new: true })
         .then(updatedUser => {
             req.session.currentUser = updatedUser
         })

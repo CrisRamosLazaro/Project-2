@@ -12,16 +12,14 @@
         <div class="col-lg-8 d-flex">
             <div class="col-md-6">
                 <p> {{name}}</p>
-                <p> where: {{description}}</p>
-                <p>when:? {{date}}</p>
-                <form action="/events/{{id}}/join" method="POST" style="display: inline">
+                <p> where? {{location}}</p>
+                <p>when? {{date}}</p>
+                <form action="/events/{{_id}}/join" method="POST" style="display: inline">
                     <input type="submit" value="join" class="btn btn-sm btn-danger">
                 </form>
                 <a href="#" class="btn btn-sm btn-info custom-button">View event details</a>
             </div>
         </div>
-
-        {{!-- <a href="/events/{{_id}}" class="btn btn-sm btn-info custom-button">View event details</a> --}}
 
         <hr class="mt-3 mb-3">
         {{/each}}
