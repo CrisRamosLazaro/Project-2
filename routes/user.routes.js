@@ -23,13 +23,10 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
             const userWithEvents = values[values.length - 1]
 
 
-
             const favMovies = movies.map(elm => elm.data)
             res.render('users/profile', { user: userWithEvents, favMovies })
         })
         .catch(err => next(err))
-
-
 })
 
 

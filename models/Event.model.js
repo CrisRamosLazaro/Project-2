@@ -38,8 +38,12 @@ const eventSchema = new Schema(
             },
             coordinates: {
                 type: [Number],
-                required: true,
+                required: true
             },
+            name: {
+                type: String,
+                required: true
+            }
         },
 
         description: {

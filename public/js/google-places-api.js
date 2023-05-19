@@ -18,9 +18,11 @@ function initAutocomplete() {
 
         const lat = coords.lat()
         const lng = coords.lng()
+        const locationName = place.name
 
         document.getElementById('lat').value = lat
         document.getElementById('lng').value = lng
+        document.getElementById('locationName').value = locationName
 
     })
 }

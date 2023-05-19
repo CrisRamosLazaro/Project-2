@@ -1,62 +1,36 @@
-<h1>HOLA EVEnTOS</h1>
+<div class="container">
 
-{{!-- <div class="container mt-5">
 
-    <div class="row justify-content-center">
+    <h3>{{event.name}}: Full Info</h3>
+    <hr>
 
-        <div class="col-md-6">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img class="event-pic" src="{{event.eventImg}}" alt="{{event.name}}">
+        </div>
 
-            <h1>New Event</h1>
-            <hr>
-            <div class="row">
-                <form action="/events/create" method="POST">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name">
-                    </div>
+        <div class="col-md-8">
+            <p class="event-deets"><strong>{{event.name}}</strong></p>
+            <p><strong>Description:</strong> {{event.description}}</p>
+            <p><strong> When: </strong>{{event.date}} - {{event.time.start}} | {{event.time.end}}</p>
+            <p><strong> Where: </strong>{{event.location.name}}</p>
+            <div class="container">
+                <div id="map" style="height: 200px; width: 300px;" class="mb-3"></div>
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="startDate" class="form-label">Start Date</label>
-                                <input type="date" class="form-control" id="startDate" name="date[start]">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="endDate" class="form-label">End Date</label>
-                                <input type="date" class="form-control" id="endDate" name="date[end]">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="location" class="form-label">Where?</label>
-                        <input type="text" id="location" onFocus="geolocate()" class="form-control" name="location">
-                        <input type="hidden" id="lat" name="location[coordinates][1]">
-                        <input type="hidden" id="lng" name="location[coordinates][0]">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="eventImg" class="form-label">Add an image</label>
-                        <input type="text" class="form-control" id="eventImg" name="image">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        <textarea type="text" class="form-control" id="description" rows="3"
-                            name="description"></textarea>
-                    </div>
-
-                    <div class="d-grid mt-5">
-                        <button type="submit" class="btn btn-dark btn-lg">Create event</button>
-                    </div>
-                </form>
             </div>
+
+            <p><strong> Tickets: </strong>{{event.tickets.total}}</p>
         </div>
     </div>
+
+    <hr>
+
+    <a href="/events/list" class="btn btn-dark">Back to events</a>
+
+
 </div>
 
+
 <script
-    src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyCQ0r02Yba37PtZDZ55sV8s962Q1Hdtihw"></script>
---}}
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQ0r02Yba37PtZDZ55sV8s962Q1Hdtihw&libraries=places&callback=initMap"></script>
+<script src="/js/event-map.js"></script>

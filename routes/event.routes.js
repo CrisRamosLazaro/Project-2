@@ -12,12 +12,12 @@ router.get('/create', isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
 router.post("/create", (req, res, next) => {
 
-    const { name, eventImg, date, timeStart: start, timeEnd: end, description, tickets } = req.body
-    let { lat, lng } = req.body
+    const { name, eventImg, date, timeStart: start, timeEnd: end, lat, lng, locationName, description, tickets } = req.body
 
     const location = {
         type: 'Point',
-        coordinates: [lng, lat]
+        coordinates: [lat, lng],
+        name: locationName
     }
 
     Event
@@ -29,7 +29,7 @@ router.post("/create", (req, res, next) => {
 router.get("/list", isLoggedIn, (req, res, next) => {
     Event
         .find()
-        .sort({ name: 1 })
+        .sort({ date: 1 })
         .then(events => {
             const dateFormatEvents = events.map(event => {
                 const formattedDate = formatDate(event.date)
@@ -39,7 +39,6 @@ router.get("/list", isLoggedIn, (req, res, next) => {
                 };
             });
             res.render('events/event-list', { dateFormatEvents })
-            console.log(dateFormatEvents)
         })
         .catch(err => next(err));
 });
@@ -56,6 +55,23 @@ router.post("/:eventId/join", isLoggedIn, (req, res, next) => {
         })
         .then(() => res.redirect(`/users/profile`))
         .catch(err => next(err))
+})
+
+router.get('/:eventId', isLoggedIn, (req, res, next) => {
+
+    const { eventId } = req.params
+
+    Event
+        .findById(eventId)
+        .then(event => {
+            const formattedDate = formatDate(event.date)
+            const eventData = {
+                ...event.toObject(),
+                date: formattedDate
+            }
+            res.render('events/event-page', { event: eventData })
+        })
+        .catch(err => console.log(err))
 })
 
 module.exports = router
