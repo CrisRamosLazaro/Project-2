@@ -14,10 +14,15 @@ router.get('/movies', (req, res, next) => {
         .catch(err => res.status(500).json({ message: 'Server API error', err }))
 })
 
-router.get('/locations', (req, res, next) => {
+router.get('/locations/:eventId', (req, res, next) => {
+
+    const { eventId } = req.params
+
     Event
-        .find()
-        .then(events => res.json(events))
+        .findById(eventId)
+        .then(event => {
+            res.json(event)
+        })
         .catch(err => console.log(err))
 })
 

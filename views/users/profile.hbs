@@ -10,7 +10,7 @@
         <div class="col-md-8 d-flex movie-plot-box">
             <div class="col-md-6">
                 <p>My email: {{user.email}}</p>
-                <p>My favorite movies:</p>
+                <h4>My favorite movies:</h4>
                 <div class="row movie-list-user">
                     {{#each favMovies}}
                     <div class="col-md-4">
@@ -22,16 +22,24 @@
             </div>
         </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col-md-4 text-center avatar-box">
         </div>
         <div class="col-md-6">
-            <p>Events I attended:</p>
-            <ul>
+            <h4>Events I'm attending:</h4>
+            <div class="row movie-list-user">
                 {{#each user.myEvents}}
-                <li class=" ">Name: {{this.name}}, Date: {{this.date}} | {{this.time}}</li>
+                <div class="col-md-4">
+                    <img class="events-userlist mb-2" src="{{this.eventImg}}" alt="{{this.name}}">
+
+                    <article>
+                        <p><strong>Name:</strong> {{this.name}}</p>
+                        <p><strong>Date:</strong> {{this.date}} | {{this.time.start}}-{{this.time.end}}</p>
+                    </article>
+                </div>
                 {{/each}}
-            </ul>
+            </div>
         </div>
     </div>
     <hr>

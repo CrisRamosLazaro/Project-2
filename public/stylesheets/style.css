@@ -35,6 +35,12 @@ h1 {
   object-fit: cover;
 }
 
+.events-userlist {
+  width: 177.78px;
+  height: 120px;
+  object-fit: cover;
+}
+
 .movie-title {
   font-size: 0.8em;
   text-align: center;
@@ -75,4 +81,75 @@ h1 {
 
 .event-deets {
   font-size: 1.5em;
+}
+
+.home-btn {
+  color: #679dad !important;
+  background-color: #fff !important;
+  border: #fff !important;
+  /* font-size: 20px !important; */
+}
+
+.home-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/cinema.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px;
+  z-index: 1;
+}
+
+.navbar {
+  z-index: 2;
+}
+
+.home-title {
+  color: #fff !important;
+  font-size: 75px !important;
+  font: 'copperplate' !important;
+  margin-bottom: 20px !important;
+}
+
+.custom-navbar,
+.custom-navbar .dropdown-menu,
+.custom-navbar .dropdown-menu {
+  background-color: #05122d;
+}
+
+.custom-navbar .dropdown-menu a.dropdown-item:hover {
+  background-color: transparent;
+}
+
+#suggestionResults a {
+  text-decoration: none;
+  color: #fff;
+  text-shadow: 1px 1px 2px #05122d;
+}
+
+#suggestionResults a:hover {
+  color: rgb(94, 10, 10);
+}
+
+li {
+  list-style: none;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  overflow: hidden;
+}
+
+.image-container img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
 }

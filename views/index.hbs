@@ -1,20 +1,28 @@
 <div class="home-container">
     <div class="container home-box">
-        <div class="white-box">
-            <article>
-                <h2 class="home-h2">MOVIE FINDER</h2>
-                <hr>
-            </article>
+        <div class="row">
+            <br><br><br><br><br>
+        </div>
+        <div class="row">
+            <div class="col-lg-5">
 
-            <form method="POST" action="/movie-search-results/:value">
+            </div>
 
-                <input type="text" name="title" required id="movieTitleAutocomplete">
-                <ul id="suggestionResults">
-                </ul>
-                <br><br>
+            <div class="col-lg-7">
+                <h2 class="home-title">MOVIE FINDER</h2>
+                <form method="POST" action="/movie-search-results/:value">
+                    <input type="text" name="title" required id="movieTitleAutocomplete" class="rounded-pill py-2">
+                    <ul id="suggestionResults">
+                    </ul>
+                    <br><br>
 
-                <input type="submit" value="Search for a movie or series" class="home-button">
-            </form>
+                    <input type="submit" value="Search for a movie or series"
+                        class="btn rounded-pill shadow-sm p-3 home-btn">
+                </form>
+
+            </div>
+
+
         </div>
     </div>
 </div>

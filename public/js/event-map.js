@@ -1,8 +1,10 @@
 let myMap
+const eventId = document.querySelector('#eventId').value
+
 
 function initViewMarkers() {
     initMap()
-    getEventsJSON()
+    getEventsJSON(eventId)
 }
 
 function initMap() {
@@ -12,23 +14,24 @@ function initMap() {
     )
 }
 
-function getEventsJSON() {
-    fetch(`/api/locations`)
+function getEventsJSON(eventId) {
+    fetch(`/api/locations/${eventId}`)
         .then(res => res.json())
-        .then(eventsJSON => renderEventsMarkers(eventsJSON))
+        .then(eventsJSON => renderEventMarkers(eventsJSON))
         .catch(err => console.log(err))
 }
 
-function renderEventMarker(eventData) {
+function renderEventMarkers(eventData) {
     const eventCoords = {
-        lat: eventData.location.coordinates[1],
-        lng: eventData.location.coordinates[0]
-    };
+        lat: eventData.location.coordinates[0],
+        lng: eventData.location.coordinates[1]
+    }
+
     new google.maps.Marker({
         map: myMap,
         position: eventCoords,
         title: eventData.name
-    });
+    })
 }
 
 initViewMarkers()

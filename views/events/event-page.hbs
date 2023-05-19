@@ -17,6 +17,8 @@
 
             <p><strong> Tickets: </strong>{{event.tickets.total}}</p>
         </div>
+
+        <input type="hidden" id="eventId" value='{{event._id}}'>
     </div>
 
     <hr>
@@ -26,7 +28,6 @@
 
 </div>
 
-
-<script
-    src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyCQ0r02Yba37PtZDZ55sV8s962Q1Hdtihw"></script>
 <script src="/js/event-map.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?callback=initViewMarkers&key=AIzaSyCQ0r02Yba37PtZDZ55sV8s962Q1Hdtihw"></script>
