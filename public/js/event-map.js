@@ -3,28 +3,35 @@ const eventId = document.querySelector('#eventId').value
 
 
 function initViewMarkers() {
-    initMap()
     getEventsJSON(eventId)
+        .then(eventsJSON => {
+            const eventCoords = {
+                lat: eventsJSON.location.coordinates[1],
+                lng: eventsJSON.location.coordinates[0]
+            }
+            initMap(eventCoords)
+            renderEventMarkers(eventsJSON)
+        })
+        .catch(err => console.log(err))
 }
 
-function initMap() {
+function initMap(center) {
     myMap = new google.maps.Map(
         document.querySelector('#map'),
-        { zoom: 12, center: { lat: 40.392521370648154, lng: - 3.6989879718518366 }, }
+        { zoom: 12, center: center }
     )
 }
 
 function getEventsJSON(eventId) {
-    fetch(`/api/locations/${eventId}`)
+    return fetch(`/api/locations/${eventId}`)
         .then(res => res.json())
-        .then(eventsJSON => renderEventMarkers(eventsJSON))
         .catch(err => console.log(err))
 }
 
 function renderEventMarkers(eventData) {
     const eventCoords = {
-        lat: eventData.location.coordinates[0],
-        lng: eventData.location.coordinates[1]
+        lat: eventData.location.coordinates[1],
+        lng: eventData.location.coordinates[0]
     }
 
     new google.maps.Marker({

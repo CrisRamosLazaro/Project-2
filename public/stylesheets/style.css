@@ -10,8 +10,10 @@ h1 {
   color: 15px;
 }
 
-.custom-button {
+.view-deets-button {
   width: auto;
+  background-color: #dedede;
+  color: #280104
 }
 
 .avatar-box {
@@ -84,10 +86,17 @@ h1 {
 }
 
 .home-btn {
-  color: #679dad !important;
-  background-color: #fff !important;
-  border: #fff !important;
-  /* font-size: 20px !important; */
+  color: #fff !important;
+  background-color: #280104 !important;
+  border: #280104 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important
+}
+
+.search-btn {
+  color: #280104 !important;
+  background-color: #dedede !important;
+  border: #280104 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important
 }
 
 .home-container {
@@ -96,7 +105,7 @@ h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../images/cinema.jpg");
+  background-image: url("../images/depositphotos_328859414-stock-photo-projector-cinema-hall-blank-white.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   padding: 20px;
@@ -108,7 +117,8 @@ h1 {
 }
 
 .home-title {
-  color: #fff !important;
+  color: #280104 !important;
+  text-shadow: 1px 1px 2px #05122d;
   font-size: 75px !important;
   font: 'copperplate' !important;
   margin-bottom: 20px !important;
@@ -117,7 +127,7 @@ h1 {
 .custom-navbar,
 .custom-navbar .dropdown-menu,
 .custom-navbar .dropdown-menu {
-  background-color: #05122d;
+  background-color: #280104;
 }
 
 .custom-navbar .dropdown-menu a.dropdown-item:hover {
@@ -152,4 +162,13 @@ li {
   transform: translate(-50%, -50%);
   width: 100%;
   height: auto;
+}
+
+.user-profile-date {
+  margin-bottom: 0px !important;
+}
+
+.btn-join {
+  background-color: #280104;
+  color: #dedede
 }

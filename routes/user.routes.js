@@ -3,15 +3,16 @@ const User = require('../models/User.model')
 const { isLoggedIn, checkRoles, checkUser } = require('../middlewares/route-guard')
 const uploaderMiddleware = require('../middlewares/uploader.middleware')
 const { getUserRole } = require("../utils/role-handling")
+const { formatDate } = require('../utils/date-utils')
 const { response } = require("express")
 const watchmodeApiHandler = require("../services/watchmode-api.service")
 
 // User profile
 router.get('/profile', isLoggedIn, (req, res, next) => {
 
-    const userFavi = req.session.currentUser.favMovies
+    const userFave = req.session.currentUser.favMovies
 
-    const moviesPromises = userFavi.map(idMovies => watchmodeApiHandler.getOneTitle(idMovies))
+    const moviesPromises = userFave.map(idMovies => watchmodeApiHandler.getOneTitle(idMovies))
     const userPromise = User
         .findById(req.session.currentUser._id)
         .populate('myEvents')
@@ -22,13 +23,24 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
             const movies = values.slice(0, -1)
             const userWithEvents = values[values.length - 1]
 
+            let userObj = userWithEvents.toObject();
+
+            userObj.myEvents = userObj.myEvents.map(event => {
+                const formattedDate = formatDate(new Date(event.date))
+
+                let eventObj = {
+                    ...event,
+                    date: formattedDate
+                }
+
+                return eventObj
+            })
 
             const favMovies = movies.map(elm => elm.data)
-            res.render('users/profile', { user: userWithEvents, favMovies })
+            res.render('users/profile', { user: userObj, favMovies, formatDate })
         })
         .catch(err => next(err))
 })
-
 
 
 // List of all users seen by the ADMIN

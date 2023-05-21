@@ -12,11 +12,11 @@ router.get('/create', isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
 router.post("/create", (req, res, next) => {
 
-    const { name, eventImg, date, timeStart: start, timeEnd: end, lat, lng, locationName, description, tickets } = req.body
+    const { name, eventImg, date, timeStart: start, timeEnd: end, lng, lat, locationName, description, tickets } = req.body
 
     const location = {
         type: 'Point',
-        coordinates: [lat, lng],
+        coordinates: [lng, lat],
         name: locationName
     }
 

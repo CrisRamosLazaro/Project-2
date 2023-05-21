@@ -1,17 +1,19 @@
 <div class="home-container">
     <div class="container home-box">
-        <div class="row">
-            <br><br><br><br><br>
+        <div class="row mb-5">
+        </div>
+        <div class="row mb-5">
         </div>
         <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-4">
 
             </div>
 
-            <div class="col-lg-7">
-                <h2 class="home-title">MOVIE FINDER</h2>
+            <div class="col-lg-8">
+                <h2 class="home-title mt-3">MOVIE FINDER</h2>
                 <form method="POST" action="/movie-search-results/:value">
-                    <input type="text" name="title" required id="movieTitleAutocomplete" class="rounded-pill py-2">
+                    <input type="text" name="title" required id="movieTitleAutocomplete"
+                        class="rounded-pill shadow-sm search-btn py-2" value="   search">
                     <ul id="suggestionResults">
                     </ul>
                     <br><br>
